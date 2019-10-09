@@ -5,30 +5,30 @@ Neste lab, você irá aprender como atualizar o número de instâncias de um dep
 Para este lab, você precisará de um deployment ativo da aplicação `guestbook`, do lab anterior. Caso você tenha apagado, recrie utilizando:
 
 ```console
-$ kubectl run guestbook --image=ibmcom/guestbook:v1
-$ kubectl expose deployment guestbook --type="NodePort" --port=3000
+$ kubectl run guestbook --image=ibmcom/guestbook:v1 -n <nome-do-namespace>
+$ kubectl expose deployment guestbook --type="NodePort" --port=3000 -n <nome-do-namespace>
 ```
     
 # 1. Escale aplicações utilizando réplicas
 
 Uma *replica* é uma cópia de um pod que contém um serviço rodando. Tendo múltiplas replicas de um pod, você garante que seu deployment terá os recursos disponíveis para aguentar uma carga crescente na sua aplicação.
 
-1. `kubectl` providencia um subcomando `scale` ara mudar o tamanho de um deployment existente. Vamos aumentar nossa capacidade; de uma instância de`guestbook` para 10 instâncias:
+1. `kubectl` providencia um subcomando `scale` para mudar o tamanho de um deployment existente. Vamos aumentar nossa capacidade; de uma instância de`guestbook` para 10 instâncias:
 
    ``` console
-   $ kubectl scale --replicas=10 deployment guestbook
+   $ kubectl scale --replicas=10 deployment guestbook -n <nome-do-namespace>
    deployment "guestbook" scaled
    ```
 
    O Kubernetes agora irá tentar chegar ao estado desejado de 10 replicas, subindo 9 novos pods com a mesma configuração.
 
 2. Para ver as mudanças acontecendo, você pode rodar:
-   `kubectl rollout status deployment guestbook`.
+   `kubectl rollout status deployment guestbook -n <nome-do-namespace>`.
 
    O rollout pode acontecer de forma tão rápida, que talvez as seguintes mensagens _não_ sejam exibidas:
 
    ```console
-   $ kubectl rollout status deployment guestbook
+   $ kubectl rollout status deployment guestbook -n <nome-do-namespace>
    Waiting for rollout to finish: 1 of 10 updated replicas are available...
    Waiting for rollout to finish: 2 of 10 updated replicas are available...
    Waiting for rollout to finish: 3 of 10 updated replicas are available...
@@ -42,12 +42,12 @@ Uma *replica* é uma cópia de um pod que contém um serviço rodando. Tendo mú
    ```
 
 3. Uma vez finalizado o rollout, confira se os seus pods estão ativos usando o seguinte comando: 
-   `kubectl get pods`.
+   `kubectl get pods -n <nome-do-namespace>`.
 
    Você verá uma listagem com 10 réplicas do seu deployment:
 
    ```console
-   $ kubectl get pods
+   $ kubectl get pods -n <nome-do-namespace>
    NAME                        READY     STATUS    RESTARTS   AGE
    guestbook-562211614-1tqm7   1/1       Running   0          1d
    guestbook-562211614-1zqn4   1/1       Running   0          2m
@@ -77,17 +77,17 @@ Para realizar o update e o roll back:
 1. Utilizando `kubectl`, você pode atualizar o seu deployment para que ele use a imagem
    `v2`. `kubectl` permite que você altere detalhes sobre recursos existentes, com o subcomando `set`. Podemos usá-lo para trocar a imagem que está sendo utilizada.
    
-    ```$ kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2```
+    ```$ kubectl set image deployment/guestbook guestbook=ibmcom/guestbook:v2 -n <nome-do-namespace>```
 
    Note que um Pod pode ter múltiplos containers, cada um com o seu próprio nome. Cada imagem pode ser trocada individualmente; ou todas de uma só vez, referenciando seu nome. No caso do nosso deployment `guestbook` Deployment, o nome do container também é `guestbook`.
    Múltiplos containers podem ser atualizados de uma só vez.
    ([Mais Informações](https://kubernetes.io/docs/user-guide/kubectl/kubectl_set_image/).)
 
-3. Rode o comando  `kubectl rollout status deployment/guestbook` para checar o status do rollout. O rollout pode acontecer tão        rapidamente, que talvez as seguintes mensagens _não_ apareçam:
+3. Rode o comando  `kubectl rollout status deployment/guestbook -n <nome-do-namespace>` para checar o status do rollout. O rollout pode acontecer tão        rapidamente, que talvez as seguintes mensagens _não_ apareçam:
   
   
    ```console
-   $ kubectl rollout status deployment/guestbook
+   $ kubectl rollout status deployment/guestbook -n <nome-do-namespace>
    Waiting for rollout to finish: 2 out of 10 new replicas have been updated...
    Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
    Waiting for rollout to finish: 3 out of 10 new replicas have been updated...
@@ -127,7 +127,7 @@ Para realizar o update e o roll back:
    no navegador, para confirmar que seu novo código está ativo.
    Lembre-se, para conseguir o "nodeport" e o "public-ip" utilize:
 
-   `$ kubectl describe service guestbook`
+   `$ kubectl describe service guestbook -n <nome-do-namespace>`
    e
    `$ ibmcloud cs workers <name-of-cluster>`
 
@@ -135,11 +135,11 @@ Para realizar o update e o roll back:
 
 5. Caso você queira desfazer o seu último rollout, utilize:
    ```console
-   $ kubectl rollout undo deployment guestbook
+   $ kubectl rollout undo deployment guestbook -n <nome-do-namespace>
    deployment "guestbook"
    ```
 
-   Você poderá então usar `kubectl rollout status deployment/guestbook` para ver o status.
+   Você poderá então usar `kubectl rollout status deployment/guestbook -n <nome-do-namespace>` para ver o status.
    
 6. Quando um rollout é feito, você vê referências à *old* replicas e *new* replicas.
    Como as *old* replicas são os 10 pods originais, implementados quando nós escalamos a aplicação. *new* replicas vêm dos pods criados recentemente, com a imagem diferente. Todos estes pods são pertencentes ao deployment. O deployment gerencia esses dois sets de pods, utilizando um recurso chamado ReplicaSet. Podemos observar os ReplicaSets do guestbook com:
