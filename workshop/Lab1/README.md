@@ -23,7 +23,8 @@ Primeiramente, a CLI do kubernetes `kubectl` precisa ser configurada para conver
 
 1. Execute `$ ibmcloud ks cluster-config ikslab`, e configure a variável de ambiente `KUBECONFIG` baseado na saída do comando. Isso fará seu client `kubectl` apontar para seu cluster Kubernetes.
 
-Após feita a configuração, precisamos criar um novo namespace no cluster fornecido. Um Namespace é uma espécie de divisão do cluster, e este será o seu ambiente neste lab. Para isso, execute `$ kubectl create namespace <nome-do-namespace>`.
+Após feita a configuração, precisamos criar um novo namespace no cluster fornecido. Um Namespace é uma espécie de divisão do cluster, e este será o seu ambiente neste lab. Cada pessoa fazendo o lab terá seu próprio namespace. Escolha um nome único para voce, e guarde esse nome, pois voce o usará no restante do laboratório. 
+Execute `$ kubectl create namespace <nome-do-namespace>` para criar o namespace, mas lembre-se de substuir o <nome-do-namespace> com o nome que voce escolheu. 
 
 Nessa parte do lab nós faremos o deploy de uma aplicação chamada `guestbook` no namespace que criado.
 
