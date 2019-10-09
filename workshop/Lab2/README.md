@@ -144,7 +144,7 @@ Para realizar o update e o roll back:
 6. Quando um rollout é feito, você vê referências à *old* replicas e *new* replicas.
    Como as *old* replicas são os 10 pods originais, implementados quando nós escalamos a aplicação. *new* replicas vêm dos pods criados recentemente, com a imagem diferente. Todos estes pods são pertencentes ao deployment. O deployment gerencia esses dois sets de pods, utilizando um recurso chamado ReplicaSet. Podemos observar os ReplicaSets do guestbook com:
    ```console
-   $ kubectl get replicasets -l run=guestbook
+   $ kubectl get replicasets -l run=guestbook -n <nome-do-namespace>
    NAME                   DESIRED   CURRENT   READY     AGE
    guestbook-5f5548d4f    10        10        10        21m
    guestbook-768cc55c78   0         0         0         3h
@@ -152,9 +152,9 @@ Para realizar o update e o roll back:
 
 Antes de continuarmos, vamos apagar a aplicação, e então nós Podemos aprender diferentes formas de chegar ao mesmo resultado:
 
-Para remover o deployment, utilize `kubectl delete deployment guestbook`.
+Para remover o deployment, utilize `kubectl delete deployment guestbook -n <nome-do-namespace>`.
 
-Para remover o serviço, utilize `kubectl delete service guestbook`.
+Para remover o serviço, utilize `kubectl delete service guestbook -n <nome-do-namespace>`.
 
 **Parabéns!** Você testou neste Lab os conceitos de Escalabilidade, RollOut e RollBack do Kubernetes. O lab 2 está completo. 
 Clique [aqui](../Lab3/README.md) para seguir para o próximo lab.
