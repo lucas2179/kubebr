@@ -53,10 +53,10 @@ Containers permitem que você compartilhe um SO host. Isso reduz as duplicaçõe
 
 Antes de entrarmos em Kubernetes, você precisará provisionar um cluster para você conteinerizar sua aplicação. Então você não terá que esperar ficar pronto para os labs subsequentes. 
 
-1. Você deve instalar as CLIs pelo https://console.ng.bluemix.net/docs/containers/cs_cli_install.html. Se você ainda não possuir essas CLIs e a CLI do Kubernetes, faça o [lab 0](Lab0) antes de iniciar este curso.
-2. Se você ainda não possuir um cluster, provisione. Isso pode levar alguns minutos, então comece: `ibmcloud cs cluster-create --name <name-of-cluster>`
-3. Depois da criação, antes de usar o cluster, certifique-se que o provsionamento esteja completo e pronto para uso. Rode o seguinte comando: `ibmcloud cs clusters` e verifique se o estado do seu cluster consta como "deployed".  
-4. E então rode `ibmcloud cs workers <name-of-cluster>` e verifique se todos os workers nodes estão em state "normal" com os status "Ready".
+1. Você deve instalar as CLIs pelo https://cloud.ibm.com/docs/containers?topic=containers-cs_cli_install. Se você ainda não possuir essas CLIs e a CLI do Kubernetes, faça o [lab 0](Lab0) antes de iniciar este curso.
+2. Um cluster Kubernetes já foi criado para esse laboratório. O nome do cluster é ikslab. Voce ira usa-lo.
+3. Como curisiodade, pelo terminal faça o login e visualize os clusters que estao criados atraves do seguinte comando: `ibmcloud cs clusters` e verifique se o estado do cluster ikslab está como "deployed".
+4. E então rode `ibmcloud cs workers ikslab` e verifique se todos os workers nodes estão em state "normal" com os status "Ready".
 
 # Kubernetes e containers: Overview
 
