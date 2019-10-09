@@ -95,8 +95,8 @@ Parabéns, você fez o deploy de uma aplicação no Kubernetes!
 Quando você concluir os passos acima, você pode também usar esse deployment
 [próximo lab deste curso](../Lab2/README.md), ou você pode remover o deployment e encerrar o curso por aqui
 
-  1. Para remover o deployment, execute `$ kubectl delete deployment guestbook`.
+  1. Para remover o deployment, execute `$ kubectl delete deployment guestbook -n <nome-do-namespace>`.
 
-  2. Para remover o serviço, execute  `$ kubectl delete service guestbook`.
+  2. Para remover o serviço, execute  `$ kubectl delete service guestbook -n <nome-do-namespace>`.
 
 Agora você voltar na raiz do repositório para se preparar para o próximo Lab: `$ cd ..`.
