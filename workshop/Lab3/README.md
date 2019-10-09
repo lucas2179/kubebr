@@ -3,7 +3,6 @@
 Nesse lab, você aprenderá como fazer o deploy da mesma aplicação guestbook que fizemos
 no lab anterior, de qualquer maneira, ao invés de usar as funções do `kubectl`
 estaremos fazendo o depoy da aplicação usando arquivos de configuração.
-The configuration file mechanism allows you to have more
 O modo de arquivos de configuração permite que você tenha um controle maior 
 sobre os recursos que estão sendo criados dentro do seu cluster Kubernetes.
 
@@ -80,7 +79,7 @@ o tempo todo.
 execute o seguinte comando:
 
    ``` console
-   $ kubectl create -f guestbook-deployment.yaml
+   $ kubectl create -f guestbook-deployment.yaml -n <nome-do-namespace>
    deployment "guestbook" created
    ```
 
@@ -92,7 +91,7 @@ execute o seguinte comando:
   `spec.template.metadata.labels` section.
 
    ```console 
-   $ kubectl get pods -l app=guestbook
+   $ kubectl get pods -l app=guestbook -n <nome-do-namespace>
    ```
 
  Quando você muda o número de replicas em uma configuração, o Kubernetes vai tentar
@@ -100,7 +99,7 @@ execute o seguinte comando:
  essas alterações, execute o seguinte comando:
 
    ```console
-   $ kubectl edit deployment guestbook-v1
+   $ kubectl edit deployment guestbook-v1 -n <nome-do-namespace>
    ```
 
 Isso fará com que ele busque no servidor do Kubernetes a última configuração 
@@ -115,7 +114,7 @@ Deployment para fazer alterações. Para isso, você deve usar o seguinte comand
 para fazer uma mudança efetiva quando você editar o deployment locamente.
 
    ```console
-   $ kubectl apply -f guestbook-deployment.yaml
+   $ kubectl apply -f guestbook-deployment.yaml -n <nome-do-namespace>
    ```
 
 Isso solicitará ao kubernetes para diferenciar nosso arquivo yaml do 
@@ -152,14 +151,14 @@ porta 3000 no cluster para a porta “http-server” do nosso app, que é a port
 - Agora iremos criar o guestbook service usando um comando parecido ao
   que usamos quando criamos o Deployment:
 
-  ` $ kubectl create -f guestbook-service.yaml `
+  ` $ kubectl create -f guestbook-service.yaml -n <nome-do-namespace>`
 
 - Teste o app guestbook usando o browser que preferir com a URL
   `<seu-cluster-ip>:<node-port>`
 
   Lembre-se, para pegar a `nodeport` e o `public-ip` use:
 
-  `$ kubectl describe service guestbook`
+  `$ kubectl describe service guestbook -n <nome-do-namespace>`
   e
   `$ ibmcloud ks workers <nome-do-cluster>`
 
@@ -214,7 +213,7 @@ A imagem que está rodando no container é a 'redis:2.8.23' e expoe a porta padr
 - Crie um redis Deployment, como fizemos para o guestbook:
 
     ```console
-    $ kubectl create -f redis-master-deployment.yaml
+    $ kubectl create -f redis-master-deployment.yaml -n <nome-do-namespace>
     ```
 
 - Verifique se o pod do redis server está "running":
@@ -227,7 +226,7 @@ A imagem que está rodando no container é a 'redis:2.8.23' e expoe a porta padr
 
 - Vamos testar o redis standalone:
 
-    ` $ kubectl exec -it redis-master-q9zg7 redis-cli `
+    ` $ kubectl exec -it redis-master-q9zg7 redis-cli -n <nome-do-namespace> `
 
     O comando kubectl exec irá iniciar um processo secundário no container especificado.
     Neste caso, estamos pedindo que o comando "redis-cli" seja executado 
@@ -271,13 +270,13 @@ Isso cria um objeto Service chamado 'redis-master' e configura porta de destino
 
 - Cria o serviço para acessar o redis master:
 
-    ``` $ kubectl create -f redis-master-service.yaml ```
+    ``` $ kubectl create -f redis-master-service.yaml -n <nome-do-namespace> ```
 
 - Reinicie o guestbook para que ele encontre o serviço redis para usar como banco de dados:
 
     ```console
-    $ kubectl delete deploy guestbook-v1 
-    $ kubectl create -f guestbook-deployment.yaml
+    $ kubectl delete deploy guestbook-v1 -n <nome-do-namespace> 
+    $ kubectl create -f guestbook-deployment.yaml -n <nome-do-namespace>
     ```
 
 - Teste o app guestbook utilizando qualquer browser que preferir com a URL:
@@ -335,11 +334,11 @@ spec:
 ```
 
 - Crie o pod rodando deployment redis slave.
- ``` $ kubectl create -f redis-slave-deployment.yaml ```
+ ``` $ kubectl create -f redis-slave-deployment.yaml -n <nome-do-namespace> ```
 
  - Verifique se todas as replicas slave estão rodando
  ```console
-$ kubectl get pods -lapp=redis,role=slave
+$ kubectl get pods -lapp=redis,role=slave -n <nome-do-namespace>
 NAME                READY     STATUS    RESTARTS   AGE
 redis-slave-kd7vx   1/1       Running   0          2d
 redis-slave-wwcxw   1/1       Running   0          2d
@@ -349,7 +348,7 @@ redis-slave-wwcxw   1/1       Running   0          2d
   tudo está certo:
 
  ```console
-$ kubectl exec -it redis-slave-kd7vx  redis-cli
+$ kubectl exec -it redis-slave-kd7vx  redis-cli -n <nome-do-namespace>
 127.0.0.1:6379> keys *
 1) "guestbook"
 127.0.0.1:6379> lrange guestbook 0 10
@@ -381,12 +380,12 @@ spec:
 ```
 
 - Crie o serviço para acessar o redis slaves.
-    ``` $ kubectl create -f redis-slave-service.yaml ```
+    ``` $ kubectl create -f redis-slave-service.yaml -n <nome-do-namespace>```
 
 - Reinicie o guestbook para que ele encontre o serviço slave para ler.
     ```console
-    $ kubectl delete deploy guestbook-v1
-    $ kubectl create -f guestbook-deployment.yaml
+    $ kubectl delete deploy guestbook-v1 -n <nome-do-namespace>
+    $ kubectl create -f guestbook-deployment.yaml -n <nome-do-namespace>
     ```
     
 - Teste a aplicação guestbook utilizando qualquer browser que preferir usando a URL `<your-cluster-ip>:<node-port>`.
@@ -394,11 +393,11 @@ spec:
 Este é o fim do lab. Agora vamos limpar nosso ambiente:
 
 ```console
-$ kubectl delete -f guestbook-deployment.yaml
-$ kubectl delete -f guestbook-service.yaml
-$ kubectl delete -f redis-slave-service.yaml
-$ kubectl delete -f redis-slave-deployment.yaml 
-$ kubectl delete -f redis-master-service.yaml 
-$ kubectl delete -f redis-master-deployment.yaml
+$ kubectl delete -f guestbook-deployment.yaml -n <nome-do-namespace>
+$ kubectl delete -f guestbook-service.yaml -n <nome-do-namespace>
+$ kubectl delete -f redis-slave-service.yaml -n <nome-do-namespace>
+$ kubectl delete -f redis-slave-deployment.yaml -n <nome-do-namespace> 
+$ kubectl delete -f redis-master-service.yaml -n <nome-do-namespace> 
+$ kubectl delete -f redis-master-deployment.yaml -n <nome-do-namespace>
 ```
 Clique [aqui](../Lab4/README.md) para seguir para o próximo lab.
