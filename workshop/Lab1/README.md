@@ -21,7 +21,7 @@ Aqui no evento voce nao precisa desse passo, mas saiba que na IBM Cloud, voce po
 # 1. Deploy da sua primeira aplicação
 Primeiramente, a CLI do kubernetes `kubectl` precisa ser configurada para conversar com o cluster provisionado.
 
-1. Execute `$ ibmcloud ks cluster-config <name-of-cluster>`, e configure a variável de ambiente `KUBECONFIG` baseado na saída do comando. Isso fará seu client `kubectl` apontar para seu cluster Kubernetes.
+1. Execute `$ ibmcloud ks cluster-config ikslab`, e configure a variável de ambiente `KUBECONFIG` baseado na saída do comando. Isso fará seu client `kubectl` apontar para seu cluster Kubernetes.
 
 Após feita a configuração, precisamos criar um novo namespace no cluster fornecido. Um Namespace é uma espécie de divisão do cluster, e este será o seu ambiente neste lab. Para isso, execute `$ kubectl create namespace <nome-do-namespace>`.
 
