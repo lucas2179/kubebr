@@ -2,9 +2,9 @@
 
 Aprenda como fazer o deploy de uma aplicação em um cluster Kubernetes dentro do IBM Kubernetes Service
 
-# 0. Como provisionar um cluster Kubernetes
+# 0. Como provisionar um cluster Kubernetes (Voce nao precisa desse passo aqui no evento)
 
-Na IBM Cloud, podemos provisionar um cluster Kubernetes rapidamente. Para testar, podemos provisionar um cluster Lite, que é a versão gratuita, porém, neste lab, será utilizado um cluster que será fornecido para vocês. 
+Aqui no evento voce nao precisa desse passo, mas saiba que na IBM Cloud, voce pode provisionar um cluster Kubernetes rapidamente. Depois para testar, voce pode provisionar um cluster Lite, que é a versão gratuita, porém, neste lab, como dissemos, será utilizado um cluster do evento. 
 1. Instale as CLIs da IBM Cloud e faça o login, como descrito no  [Lab 0](../Lab0/README.md).
 2. Provisionando um cluster na IBM Cloud:
 
