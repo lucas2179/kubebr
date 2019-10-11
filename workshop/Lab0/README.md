@@ -36,7 +36,9 @@ Para ter uma versão local do Kubernetes dashboard e para implementar apps em se
 
 * [OS X](https://storage.googleapis.com/kubernetes-release/release/v1.10.8/bin/darwin/amd64/kubectl)
 * [Linux](https://storage.googleapis.com/kubernetes-release/release/v1.10.8/bin/linux/amd64/kubectl)
-* [Windows](https://storage.googleapis.com/kubernetes-release/release/v1.10.8/bin/windows/amd64/kubectl.exe)
+* [Windows](https://storage.googleapis.com/kubernetes-release/release/v1.16.0/bin/windows/amd64/kubectl.exe)
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl-on-windows
 
 **Para usuários Windows:** Instale a Kubernetes CLI no mesmo diretório que a IBM Cloud CLI. Essa configuração facilita algumas mudanças em caminhos de arquivo quando você roda alguns comandos posteriormente.
 
@@ -72,9 +74,8 @@ ibmcloud login
 # Download do Código-fonte
 O repositório `guestbook` contém a aplicação que iremos implementar, e iremos utilizar os arquivos de configuração deste repositório. A aplicação Guestbook tem duas versões; v1 e v2, que iremos utilizar para demonstrar algumas funcionalidades posteriormente. Todos os aquivos de configuração que usamos estão no diretório guestbook/v1.
 
-#### ALTERAR ISSO
-O repositório `kube101` contém as instruções passo a passo para rodar o workshop.
+
+O repositório `Guestbook` contém o codigo que voce ira usar durante os laboratorios
 ```console
 $ git clone https://github.com/itirohidaka/guestbook.git
-$ git clone https://github.com/itirohidaka/kube101.git
 ```
