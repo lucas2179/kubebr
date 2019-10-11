@@ -13,14 +13,14 @@ $ kubectl expose deployment guestbook --type="NodePort" --port=3000 -n <nome-do-
 
 Uma *replica* é uma cópia de um pod que contém um serviço rodando. Tendo múltiplas replicas de um pod, você garante que seu deployment terá os recursos disponíveis para aguentar uma carga crescente na sua aplicação.
 
-1. `kubectl` providencia um subcomando `scale` para mudar o tamanho de um deployment existente. Vamos aumentar nossa capacidade; de uma instância de`guestbook` para 10 instâncias:
+1. `kubectl` providencia um subcomando `scale` para mudar o tamanho de um deployment existente. Vamos aumentar nossa capacidade; de uma instância de`guestbook` para 3 instâncias:
 
    ``` console
-   $ kubectl scale --replicas=10 deployment guestbook -n <nome-do-namespace>
+   $ kubectl scale --replicas=3 deployment guestbook -n <nome-do-namespace>
    deployment "guestbook" scaled
    ```
 
-   O Kubernetes agora irá tentar chegar ao estado desejado de 10 replicas, subindo 9 novos pods com a mesma configuração.
+   O Kubernetes agora irá tentar chegar ao estado desejado de 3 replicas, subindo 2 novos pods com a mesma configuração.
 
 2. Para ver as mudanças acontecendo, você pode rodar:
    `kubectl rollout status deployment guestbook -n <nome-do-namespace>`.
@@ -44,7 +44,7 @@ Uma *replica* é uma cópia de um pod que contém um serviço rodando. Tendo mú
 3. Uma vez finalizado o rollout, confira se os seus pods estão ativos usando o seguinte comando: 
    `kubectl get pods -n <nome-do-namespace>`.
 
-   Você verá uma listagem com 10 réplicas do seu deployment:
+   Você verá uma listagem com 3 réplicas do seu deployment:
 
    ```console
    $ kubectl get pods -n <nome-do-namespace>
