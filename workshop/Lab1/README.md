@@ -78,10 +78,10 @@ mas também o recurso chamado Deployment que gerencia o ciclo de vida desses pod
 
 5. Agora, a aplicação `guestbook` está rodando no seu cluster e exposta para internet. Precisamos descobrir como acessá-la.
    O worker node que está rodando no kubernetes service pega um endereço IP externo.
-   Execute o comando `$ ibmcloud ks workers <name-of-cluster>`, e note que o IP público é listado na linha `<public-IP>`.
+   Execute o comando `$ ibmcloud ks workers ikslab`, e note que o IP público é listado na linha `<public-IP>`.
    
    ```console
-   $ ibmcloud ks workers <name-of-cluster>
+   $ ibmcloud ks workers ikslab
    OK
    ID                                                 Public IP        Private IP     Machine Type   State    Status   Zone    Version  
    kube-hou02-pa1e3ee39f549640aebea69a444f51fe55-w1   173.193.99.136   10.76.194.30   free           normal   Ready    hou02   1.5.6_1500*
