@@ -219,7 +219,7 @@ A imagem que está rodando no container é a 'redis:2.8.23' e expoe a porta padr
 - Verifique se o pod do redis server está "running":
 
     ```console
-    $ kubectl get pods -lapp=redis,role=master
+    $ kubectl get pods -lapp=redis,role=master -n <nome-do-namespace>
     NAME                 READY     STATUS    RESTARTS   AGE
     redis-master-q9zg7   1/1       Running   0          2d
     ```
