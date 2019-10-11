@@ -160,7 +160,7 @@ IBM Cloud fornece a capacidade de rodar aplicações em containers no Kubernetes
 
 #  Overview do Lab
 
-[Lab 0](Lab0) (Optional): Fornece uma apresentação de como instalar as ferramentas da IBM Cloud command-line e a CLI do Kubernetes. Você pode pular esse lab se você já tiver instalado a CLI IBM CLoud, plugin do kubernetes service, plugin do container registry e a CLI do Kubernetes.
+[Lab 0](Lab0) : Fornece uma apresentação de como instalar as ferramentas da IBM Cloud command-line e a CLI do Kubernetes. Você pode pular esse lab se você já tiver instalado a CLI IBM CLoud, plugin do kubernetes service, plugin do container registry e a CLI do Kubernetes.
 
 [Lab 1](Lab1): Esse lab percorre a criação e o deploy de um simples app "guestbook" escrito em Go como um net/http server e como acessá-lo.
 
