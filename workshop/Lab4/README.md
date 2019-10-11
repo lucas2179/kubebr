@@ -20,7 +20,7 @@ Para este lab, devemos clonar o repositorio kube101.
 `git clone https://github.com/itirohidaka/kube101.git`. Após clonar, você poderá encontrar os arquivos
 Nesse exemplo, definimos uma liveness probe Command para checar a saúde do container.
 
- Abra o arquivo  `healthcheck.yml` com um editor de textos. Esse script de configuração cria um pod, que cria um arquivo chamado `healthy`, aguarda 30 segundos, deleta esse arquivo e aguardar mais 600 segundos
+ Abra o arquivo  `liveness-exec.yml` com um editor de textos. Esse script de configuração cria um pod, que cria um arquivo chamado `healthy`, aguarda 30 segundos, deleta esse arquivo e aguardar mais 600 segundos
 
 Veja:  
 ```yaml
@@ -53,7 +53,7 @@ Então o liveness probe irá executar um cat no arquivo criado nesse yaml. Nos p
 Executando:
 
    ```
-   kubectl create -f healthcheck.yml -n <nome-do-namespace>
+   kubectl create -f liveness-exec.yml -n <nome-do-namespace>
    ```
    
    Após 30 segundos, vamos verificar se o pod foi reiniciado:
