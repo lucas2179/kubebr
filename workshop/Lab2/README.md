@@ -107,12 +107,12 @@ Para realizar o update e o roll back:
    Você poderá então usar `kubectl rollout status deployment/guestbook -n <nome-do-namespace>` para ver o status.
    
 6. Quando um rollout é feito, você vê referências à *old* replicas e *new* replicas.
-   Como as *old* replicas são os 10 pods originais, implementados quando nós escalamos a aplicação. *new* replicas vêm dos pods criados recentemente, com a imagem diferente. Todos estes pods são pertencentes ao deployment. O deployment gerencia esses dois sets de pods, utilizando um recurso chamado ReplicaSet. Podemos observar os ReplicaSets do guestbook com:
+   Como as *old* replicas são os 3 pods originais, implementados quando nós escalamos a aplicação. *new* replicas vêm dos pods criados recentemente, com a imagem diferente. Todos estes pods são pertencentes ao deployment. O deployment gerencia esses dois sets de pods, utilizando um recurso chamado ReplicaSet. Podemos observar os ReplicaSets do guestbook com:
    ```console
    $ kubectl get replicasets -l run=guestbook -n <nome-do-namespace>
    NAME                   DESIRED   CURRENT   READY     AGE
-   guestbook-5f5548d4f    10        10        10        21m
-   guestbook-768cc55c78   0         0         0         3h
+   guestbook-5f5548d4f     3        3        3        21m
+   guestbook-768cc55c78    0        0        0         3h
    ```
 
 Antes de continuarmos, vamos apagar a aplicação, e então nós Podemos aprender diferentes formas de chegar ao mesmo resultado:
