@@ -103,11 +103,11 @@ execute o seguinte comando:
    ```
 
 Isso fará com que ele busque no servidor do Kubernetes a última configuração 
-do Deployment e carregará em um editor (vi) para você. Você vai perceber que existem 
+do Deployment e carregará em um editor (vim) para você. Você vai perceber que existem 
 mais campos nessa versão do que no arquivo yaml utilizado. Nesse arquivo contem 
 todas as propriedades sobre o deployment que o Kubernetes possui conhecimento, 
 não apenas aqueles que nós escolhemos especificar quando criamos. Note também que 
-agora contem seção de status mencionada anteriormente. Na tela do editor VI que abriu voce poderia fazer uma alteração diretamente usando os comandos do editor
+agora contem seção de status mencionada anteriormente. Na tela do editor VIM que abriu voce poderia fazer uma alteração diretamente usando os comandos do editor
 
 Você pode também editar o arquivo de deployment que nós usamos para criar o 
 Deployment para fazer alterações. Para isso, você deve usar o seguinte comando 
