@@ -94,7 +94,7 @@ Para realizar o update e o roll back:
 
    `$ kubectl describe service guestbook -n <nome-do-namespace>`
    e
-   `$ ibmcloud cs workers <name-of-cluster>`
+   `$ ibmcloud cs workers ikslab`
 
    Para certificar-se de que você está rodando a "v2" do guestbook, olhe no título da página; deverá ser exibido como `Guestbook - v2`
 
